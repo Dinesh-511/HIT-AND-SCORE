@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Score</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="mycricproj.css">
+</head>
+<body class="container">
+    
+    <button id="scoreButton">Hit The Ball</button>
+    <p id="message"></p>
+    <p id="finalScore"></p>
+
+
+
+    <script>
+        $(document).ready(function() {
+            var score = 0;
+            var audio = new Audio("batsound.mp3");
+            var foursound = new Audio("four.mp3");
+    
+            $("#scoreButton").on("click", function() {
+                audio.play();
+                var randomNum = Math.floor(Math.random() * 8);
+                
+                if (randomNum < 7) {
+                    alert(randomNum);
+                    if (randomNum === 4){
+                    foursound.play();
+                } 
+                    score += randomNum;
+                    $("#message").text("Current score: " + score);
+                } else {
+                    $("#message").text("You got a wicket!");
+                    $("#finalScore").text("Final score: " + score);
+                    $("#scoreButton").prop("disabled", true); // Disable the button
+                }
+            });
+        });
+    </script>
+</body>
+</html>
